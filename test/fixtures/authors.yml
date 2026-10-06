@@ -1,0 +1,9 @@
+jane:
+  name: Jane Austen
+  email: jane.fixture@example.test
+  encrypted_password: <%= Devise::Encryptor.digest(Author, "password123") %>
+
+ursula:
+  name: Ursula Le Guin
+  email: ursula.fixture@example.test
+  encrypted_password: <%= Devise::Encryptor.digest(Author, "password123") %>

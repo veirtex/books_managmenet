@@ -1,0 +1,38 @@
+<% content_for :title, "Edit profile" %>
+<h1>Edit profile</h1>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |form| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, autocomplete: "name" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.email_field :email, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password, "New password (optional)" %>
+    <%= form.password_field :password, autocomplete: "new-password" %>
+    <small>Leave blank to keep your current password.</small>
+  </div>
+
+  <div class="field">
+    <%= form.label :password_confirmation, "Confirm new password" %>
+    <%= form.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :current_password %>
+    <%= form.password_field :current_password, autocomplete: "current-password", required: true %>
+    <small>Enter your current password to save changes.</small>
+  </div>
+
+  <div class="form-actions">
+    <%= form.submit "Save changes" %>
+    <%= link_to "Cancel", author_path(current_author) %>
+  </div>
+<% end %>

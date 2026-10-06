@@ -1,0 +1,12 @@
+<% content_for :title, @book.title %>
+<%= link_to "Back to books", books_path, class: "back-link" %>
+<h1><%= @book.title %></h1>
+<p><strong>Release date:</strong> <%= @book.published_at %></p>
+<p><strong>Author:</strong> <%= link_to @book.author.name, author_path(@book.author) %></p>
+
+<% if @book.author == current_author %>
+  <div class="form-actions">
+    <%= link_to "Edit", edit_book_path(@book) %>
+    <%= button_to "Delete", book_path(@book), method: :delete, data: { turbo_confirm: "Delete this book?" } %>
+  </div>
+<% end %>

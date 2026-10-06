@@ -1,0 +1,23 @@
+<%= form_with model: book, class: "stacked-form" do |form| %>
+  <% if book.errors.any? %>
+    <div class="form-errors" role="alert">
+      <ul>
+        <% book.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= form.label :title, "Book name" %>
+    <%= form.text_field :title %>
+  </div>
+  <div class="field">
+    <%= form.label :published_at, "Release date" %>
+    <%= form.date_field :published_at %>
+  </div>
+  <div class="form-actions">
+    <%= form.submit book.persisted? ? "Save changes" : "Create book" %>
+    <%= link_to "Cancel", books_path %>
+  </div>
+<% end %>

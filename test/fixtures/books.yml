@@ -1,0 +1,14 @@
+pride:
+  title: Pride and Prejudice
+  published_at: 1813-01-28
+  author: jane
+
+earthsea:
+  title: A Wizard of Earthsea
+  published_at: 1968-11-01
+  author: ursula
+
+emma:
+  title: Emma
+  published_at: 1815-12-23
+  author: jane

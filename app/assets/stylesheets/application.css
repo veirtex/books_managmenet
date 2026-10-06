@@ -1,10 +1,113 @@
-/*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
- */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  color: #243044;
+  background: #f6f7f9;
+  font: 16px/1.5 system-ui, sans-serif;
+}
+
+a { color: #2458a6; text-underline-offset: 3px; }
+a:hover { color: #173c73; }
+button, input { font: inherit; }
+a, button, input { outline-offset: 4px; }
+:focus-visible { outline: 2px solid #2458a6; }
+h1 { margin: 0 0 24px; font-size: 30px; line-height: 1.25; }
+h2 { margin: 24px 0 16px; font-size: 21px; }
+h1, td, .navbar a { overflow-wrap: anywhere; }
+
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 24px;
+  padding: 16px max(24px, calc((100% - 1100px) / 2));
+  border-bottom: 1px solid #dce1e8;
+  background: white;
+}
+.navbar a { text-decoration: none; padding: 8px 0; }
+.navbar a[aria-current="page"] { color: #243044; font-weight: 650; text-decoration: underline; }
+.navbar .account-link { margin-left: auto; }
+.navbar form { margin: 0; }
+.navbar button { background: white; color: #243044; border-color: #c7ced8; }
+.navbar button:hover { background: #eef1f5; }
+
+.page { max-width: 1100px; margin: 40px auto; padding: 0 24px; }
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+  border: 1px solid #dce1e8;
+  border-radius: 8px;
+  background: white;
+}
+.filters .field { flex: 1 1 180px; min-width: 0; margin: 0; }
+.authors-filter .field { flex: 0 1 360px; }
+.field { margin-bottom: 20px; }
+label { display: block; margin-bottom: 6px; font-size: 14px; font-weight: 600; }
+input:not([type="submit"]):not([type="checkbox"]):not([type="hidden"]) {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 9px 12px;
+  border: 1px solid #aeb8c6;
+  border-radius: 5px;
+  color: #243044;
+  background: white;
+}
+button, input[type="submit"] {
+  min-height: 44px;
+  padding: 9px 18px;
+  border: 1px solid #2458a6;
+  border-radius: 5px;
+  background: #2458a6;
+  color: white;
+  cursor: pointer;
+}
+button:hover, input[type="submit"]:hover { background: #173c73; }
+.form-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+
+.table-wrap { overflow-x: auto; background: white; border: 1px solid #dce1e8; border-radius: 8px; }
+table { width: 100%; border-collapse: collapse; text-align: left; }
+th, td { padding: 16px 20px; vertical-align: top; }
+th { background: #eef1f5; font-size: 14px; font-weight: 650; white-space: nowrap; }
+tbody tr + tr { border-top: 1px solid #e4e8ee; }
+tbody tr:hover { background: #fafbfd; }
+.empty-state { margin: 0; padding: 32px 20px; text-align: center; color: #596578; }
+
+.form-page { max-width: 560px; margin: auto; }
+.stacked-form, .auth-page {
+  padding: 28px;
+  border: 1px solid #dce1e8;
+  border-radius: 8px;
+  background: white;
+}
+.auth-page { max-width: 480px; }
+.auth-page form { margin-bottom: 24px; }
+.auth-page .field p { margin: 0 0 6px; }
+.auth-page i, .auth-page em { font-size: 14px; color: #596578; }
+.remember-field { display: flex; align-items: center; gap: 8px; margin-bottom: 20px; }
+.remember-field label { margin: 0; font-weight: 400; }
+.remember-field input { width: 18px; height: 18px; }
+.back-link { display: inline-block; margin-bottom: 20px; }
+.notice, .form-errors, #error_explanation { padding: 14px 18px; margin: 0 0 20px; border-radius: 5px; }
+.notice { background: #eaf4ed; color: #245235; }
+.form-errors, #error_explanation { background: #fff0ef; color: #912d28; }
+.form-errors ul, #error_explanation ul { margin: 0; padding-left: 20px; }
+#error_explanation h2 { font-size: 16px; margin: 0 0 8px; }
+.field_with_errors { display: contents; }
+
+@media (max-width: 640px) {
+  .navbar { padding: 12px 16px; gap: 8px 16px; }
+  .navbar .account-link { margin-left: 0; }
+  .page { margin: 24px auto; padding: 0 16px; }
+  .auth-page { margin: 24px 16px; padding: 24px; max-width: none; }
+  .filters, .stacked-form { padding: 20px; }
+  .filters .field { flex-basis: 100%; }
+  .filters .form-actions { width: 100%; }
+  th, td { padding: 12px; }
+  h1 { font-size: 26px; }
+}

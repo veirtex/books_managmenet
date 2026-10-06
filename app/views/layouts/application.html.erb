@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title><%= content_for(:title) || "Books Managmenet" %></title>
+    <title><%= content_for(:title) || "Account" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="Books Managmenet">
     <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -14,16 +13,33 @@
     <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
     <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
 
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
-
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <%= yield %>
+    <nav class="navbar" aria-label="Main navigation">
+      <%= link_to "Books", books_path, aria: { current: ("page" if controller_name == "books") } %>
+      <%= link_to "Authors", authors_path, aria: { current: ("page" if controller_name == "authors") } %>
+
+      <% if author_signed_in? %>
+        <%= link_to "Add book", new_book_path %>
+        <%= link_to "My profile (#{current_author.name})", author_path(current_author), class: "account-link" %>
+        <%= button_to "Log out", destroy_author_session_path, method: :delete %>
+      <% else %>
+        <%= link_to "Log in", new_author_session_path, class: "account-link" %>
+      <% end %>
+    </nav>
+
+    <main class="page <%= "auth-page" if devise_controller? %>">
+      <% if notice.present? %>
+        <p class="notice" role="status"><%= notice %></p>
+      <% end %>
+      <% if alert.present? %>
+        <p class="form-errors" role="alert"><%= alert %></p>
+      <% end %>
+      <%= yield %>
+    </main>
   </body>
 </html>

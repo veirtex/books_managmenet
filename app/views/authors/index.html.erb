@@ -1,0 +1,35 @@
+<% content_for :title, "Authors" %>
+<h1>Authors</h1>
+
+<%= form_with url: authors_path, method: :get, scope: :filterrific, class: "filters authors-filter" do |form| %>
+  <div class="field">
+    <%= form.label :with_name, "Author name" %>
+    <%= form.search_field :with_name, value: @filterrific.with_name %>
+  </div>
+  <div class="form-actions">
+    <%= form.submit "Filter" %>
+    <%= link_to "Reset", authors_path %>
+  </div>
+<% end %>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Books</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @authors.each do |author| %>
+        <tr>
+          <td><%= link_to author.name, author_path(author) %></td>
+          <td><%= author.books.count %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% if @authors.empty? %>
+    <p class="empty-state">No authors found.</p>
+  <% end %>
+</div>
